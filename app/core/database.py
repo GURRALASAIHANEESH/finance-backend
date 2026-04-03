@@ -2,9 +2,12 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, DeclarativeBase
 from app.core.config import settings
 
+connect_args = {"sslmode": "require"} if "neon.tech" in settings.DATABASE_URL else {}
+
 engine = create_engine(
     settings.DATABASE_URL,
-    pool_pre_ping=True,       # reconnects if connection dropped
+    connect_args=connect_args,
+    pool_pre_ping=True,
     pool_size=10,
     max_overflow=20,
 )
