@@ -1,6 +1,6 @@
 # Finance Data Processing and Access Control Backend
 
-A production-structured REST API built with FastAPI and PostgreSQL for managing financial records with role-based access control. Built as an internship technical assessment for Zorvyn FinTech.
+A production-structured REST API built with FastAPI and PostgreSQL for managing financial records, featuring secure role-based access control (RBAC).
 
 ***
 
