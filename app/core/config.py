@@ -12,23 +12,20 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7
-    ALLOWED_ORIGINS: list[str] = ["*"]
+    ALLOWED_ORIGINS: str = "*"
     DATABASE_URL: str
     FIRST_ADMIN_EMAIL: str = "admin@finance.com"
     FIRST_ADMIN_PASSWORD: str = "Admin@1234"
     FIRST_ADMIN_NAME: str = "Super Admin"
 
-    @field_validator("ALLOWED_ORIGINS", mode="before")
-    @classmethod
-    def parse_allowed_origins(cls, v):
-        if isinstance(v, str):
-            v = v.strip()
-            if not v:
-                return []
-            if v.startswith("["):
-                return json.loads(v)
-            return [item.strip() for item in v.split(",")]
-        return v
+    @property
+    def allowed_origins_list(self) -> list[str]:
+        v = self.ALLOWED_ORIGINS.strip()
+        if not v:
+            return ["*"]
+        if v.startswith("["):
+            return json.loads(v)
+        return [item.strip() for item in v.split(",")]
 
     model_config = SettingsConfigDict(env_file=".env", case_sensitive=True)
 
