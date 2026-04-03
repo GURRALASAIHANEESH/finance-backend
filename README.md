@@ -159,9 +159,9 @@ The test suite uses an isolated in-memory SQLite database. It never touches the 
 
 ## Deployment
 
-Live API: https://finance-backend.onrender.com
+Live API: https://finance-backend-s8wc.onrender.com
 
-Swagger UI: https://finance-backend.onrender.com/docs
+Swagger UI: https://finance-backend-s8wc.onrender.com/docs
 
 ***
 
